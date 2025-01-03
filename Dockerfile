@@ -1,5 +1,7 @@
 FROM ghcr.io/cronicle-edge/cronicle-edge:v1.11.2
 
+RUN apk add --no-cache procps curl docker-cli docker fuse-overlayfs jq
+
 # non root user for shell plugin
 ARG CRONICLE_UID=1000
 ARG CRONICLE_GID=1099

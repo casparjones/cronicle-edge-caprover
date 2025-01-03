@@ -5,6 +5,25 @@ const path = require("path");
 const os = require("os");
 const { exec, execSync } = require("child_process");
 
+// Initialisiere Manager
+function initializeManager() {
+  console.log("Initializing manager...");
+  const dockerHostName = (process.env["HOSTNAME"] || os.hostname()).toLowerCase();
+  const networks = os.networkInterfaces();
+
+  const [ipInfo] = Object.keys(networks)
+      .filter((eth) => networks[eth].some((addr) => !addr.internal && addr.family === "IPv4"))
+      .map((eth) => networks[eth])[0] || [{}];
+
+  const data = {
+    type: "list_page",
+    items: [{ hostname: dockerHostName, ip: ipInfo?.address || "0.0.0.0" }],
+  };
+
+  saveData("global/servers/0", data);
+  console.log("Manager initialized.");
+}
+
 function gracefulShutdown() {
   console.log("Received termination signal, shutting down gracefully...");
   process.exit(0);
@@ -97,6 +116,8 @@ if (fs.existsSync("./data/users")) {
   console.log("Docker Env Fixed.");
   // require("../lib/main.js");
 }
+
+initializeManager();
 
 exec("manager", (error, stdout, stderr) => {
   if (error || stderr) {
