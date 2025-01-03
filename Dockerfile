@@ -17,11 +17,10 @@ ENV HOSTNAME=main
 
 RUN mkdir /opt/cronicle/caprover
 
-COPY caprover/caprover-plugin.js /opt/cronicle/caprover/caprover-plugin.js
-COPY caprover/caprover-plugin.json /opt/cronicle/caprover/caprover-plugin.json
-COPY caprover/add-plugin.sh /opt/cronicle/caprover/add-plugin.sh
+COPY caprover/ /opt/cronicle/caprover/
 RUN chmod +x /opt/cronicle/caprover/caprover-plugin.js
 RUN chmod +x /opt/cronicle/caprover/add-plugin.sh
+RUN /opt/cronicle/bin/control.sh import /opt/cronicle/caprover/export.txt
 
 WORKDIR /opt/cronicle
 COPY docker-entrypoint.js /opt/cronicle/bin/docker-entrypoint.js
@@ -31,7 +30,6 @@ RUN mkdir -p /opt/cronicle/data /opt/cronicle/conf && chmod 0700 /opt/cronicle/d
 
 # Make the entrypoint script executable
 RUN chmod +x /opt/cronicle/bin/docker-entrypoint.js
-RUN cat /opt/cronicle/bin/manager
 
 ENTRYPOINT ["/opt/cronicle/bin/docker-entrypoint.js"]
 # ENTRYPOINT ["/sbin/tini", "--", "manager"]

@@ -1,0 +1,7 @@
+# Cronicle Data Export v1.0
+# Hostname: main
+# Date/Time: Fri Jan 03 2025 17:30:51 GMT+0100 (Central European Standard Time)
+# Format: KEY - JSON
+
+global/plugins - {"page_size":50,"first_page":0,"last_page":0,"length":1,"type":"list"}
+global/plugins/0 - {"type":"list_page","items":[{"id":"caproverplug","title":"CapRover","enabled":1,"command":"caprover/caprover-plugin.js","username":"admin","modified":1734611332,"created":1734611332,"params":[{"id":"container_prefix","type":"text","title":"Container Prefix","description":"In CapRover bekommt jedes Image einen Containernamen gefolgt von einer Nummer und einem Hash. Mit diesem Prefix kann ein spezifischer Container identifiziert werden.","value":""},{"id":"script","type":"textarea","rows":5,"title":"Script","description":"Das eigentliche Skript, das im Container ausgeführt wird.","value":""}]}]}

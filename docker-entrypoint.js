@@ -83,6 +83,7 @@ if (fs.existsSync("./data/users")) {
     });
   }
 
+  /*
   if (!fs.existsSync("./data/plugins/caprover-plugin")) {
     console.log("Adding CapRover plugin...");
     try {
@@ -95,6 +96,7 @@ if (fs.existsSync("./data/users")) {
   } else {
     console.log("Found CapRover plugin...");
   }
+  */
 
   const dockerHostName = (process.env["HOSTNAME"] || process.env["HOST"] || os.hostname()).toLowerCase();
   const networks = os.networkInterfaces();
