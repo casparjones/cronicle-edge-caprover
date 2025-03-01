@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Version als Variable
-VERSION="v1.11.2"
+VERSION="v1.11.3"
 
 # Image-Name
 IMAGE_NAME="casparjones/cronicle-edge"
